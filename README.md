@@ -1,2 +1,5 @@
 # weather-app
-WebApp based on an API
+
+WebApp based on an AP
+
+## Hello Stranger
