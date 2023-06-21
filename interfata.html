@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="interfata.css">
+    
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand-title">Starea Vremii</div>
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
+            <ul>
+                <li><a href="TempConvert.html">Convertor de temperatura</a></li>
+                <li><a href="clock.html">Ceas</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section>
+
+    <div class="card">
+        <div class="search">
+         <input type="text"   class="search-bar" placeholder="Search">
+         <button><img src="https://th.bing.com/th?id=OIP.DXwKrr0ysBGomeV3Dsgb7gHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2" 
+            width="10px"
+            onclick="alert ('search: ' + document.querySelector ('.search').value);"></button>
+        </div>
+        <div class="weather loading">
+            <h2 class="city">Vremea in Bucuresti</h2>
+            <h1><div class="temp">26&deg;C</div></h1>
+            <div class="flex">
+            <div class="description">Innorat
+            <div class="humidity">Umiditate: 60%
+            <div class="wind">Vieza Vantului: 6 km/h
+                
+            </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+</section>
+
+
+
+    <script>
+        const toggleButton = document.getElementsByClassName('toggle-button')[0]
+        const navbarLinks = document.getElementsByClassName('navbar-links')[0]
+
+        toggleButton.addEventListener('click', () => {
+            navbarLinks.classList.toggle('activ')
+        })
+     
+    </script>
+    <div class="footer"></div>
+    <footer>
+        <p><small>Copyright &copy;2023 Designed by Weather Team.<br>IT School-Front End Development</small></p>
+    </footer>
+</body>
+</html>
