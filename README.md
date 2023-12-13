@@ -4,21 +4,23 @@ WebApp based on an AP
 
 ## Hello Stranger
 
-
 ### Tasks
-- [x] Adauga taskuri
-- [ ] Creaza formular pentru a cere date pentru un oras specific (fara a face request)
-- [ ] Preia prin evenimentul de click valoarea din input si stocheaza intr-o variabila
-- [ ] Cu valoarea din variabila (ex city) face requestul de fetch spre API
-- [ ] Creaza de fisiere CSS, foldere CSS, IMAGES
-- [ ] Adauga sursa de Bootstrap (CDN) in site
-- [ ] Adauga sursa CSS custom (adica ce se creeaza in folderul CSS) in site
-- [ ] Adauga sursa JS in scripts in site
-- [ ] Banner styling
-- [ ] Footer styling
-- [ ] Navigation bar + adauga pagini necesare + navigarea dintre ele
-- [ ] Preluarea raspunsului din request si stocarea intr-o forma simplificata (oras, stare vreme cu detalii necesare: sanse de ploaie, temperatura, etc)
-- [ ] Adaugarea continutului din API (cel formatat) in HTML
-- [ ] Stilizarea Index page
-- [ ] Stilizarea About page
-- [ ] Stilizarea Check weather page
+
+#### Pasul 1
+
+- [ ] Alegeti un model de cum ar trebui sa arate proiectul la final
+- [ ] Foloseste Git / Github / Github Pages
+  - [ ] Poti folosi bootstrap sau CSS scris de tine, sau chiar ambele combinate
+- [ ] (minim) O pagina simpla (pentru inceput) cu un titlu, descriere descriptiva tematicii & un formular prin care:
+  - [ ] trimitem valoarea din input ca parametru in API Request
+  - [ ] folosim raspunsul ca sa afisam prognoza (datele primite)
+
+#### Pasul 2
+
+- [ ] adauga cererile spre API, cu valoare din input intr-un eveniment in care faci asta de fiecare data cand utilizatorul scrie ceva in inputul respectiv
+
+  - [ ] hint: on change input
+  - [ ] apelezi la fiecare schimbare a valorii inputului functia ce preia datele
+
+- [ ] Hints:
+  - [ ] functia care apeleaza API sa apeleza la randul ei functia ce face update UI (insereaza continutul)

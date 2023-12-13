@@ -1,0 +1,23 @@
+:root {
+  --base-font-family: "Source Sans 3", sans-serif;
+  --theme-color-accent: #f66053;
+  --theme-color-dark: #31344e;
+  --theme-color-light: #ede6cb;
+  --theme-color-secondary: #f8a958;
+}
+
+body {
+  font-family: var(--base-font-family);
+}
+
+.custom-font-family-base {
+  font-family: var(--base-font-family);
+}
+
+.custom-content {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 700px;
+}
