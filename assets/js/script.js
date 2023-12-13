@@ -25,12 +25,16 @@ inputSearch.addEventListener("input", (e) => handleSearch(e.target.value));
  *
  * will call @function handleJSONResponse()
  */
-const fetchData = (city) => {
-  const API_SRC = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`;
+const fetchData = async (city) => {
+  const API_SRC_5DAYS_FORECAST = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`;
+  try {
+    const response = await fetch(API_SRC_5DAYS_FORECAST);
+    const responseJSON = await response.json();
 
-  fetch(API_SRC)
-    .then((response) => response.json())
-    .then((responseJSON) => handleJSONResponse(responseJSON));
+    handleJSONResponse(responseJSON);
+  } catch (error) {
+    console.error("Error fetching 5d forecast data:", error);
+  }
 };
 /**
  * @function handleJSONResponse
@@ -65,7 +69,7 @@ const handleJSONResponse = (data) => {
 const compose5DaysForecastCards = ({ dt, main: { temp }, weather: [{ main, icon }] }) => {
   const date = new Date(dt * 1000);
   return `
-  <div class="py-2 px-3 small text-secondary bg-white bg-gradient">
+  <div class="py-2 px-3 small text-secondary bg-white bg-gradient col-3">
     <p class="small text-nowrap mb-0">${date.toLocaleDateString("en-us", { weekday: "short" })}</p>
     <p class="small">${date.getDate()} / ${date.getMonth()}</p>
     <p class="mb-0">${main}</p>
@@ -105,31 +109,34 @@ const getCurrentLocation = () => {
 
   navigator.geolocation.getCurrentPosition(success, error);
 };
-const getWeather = (latitude, longitude) => {
-  fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
-  )
-    .then((response) => response.json())
-    .then((responseJSON) => {
-      const {
-        name,
-        weather: [{ main, description, icon }],
-        main: { temp },
-        ...rest
-      } = responseJSON;
 
-      document.querySelector("#conditionsCurrent").textContent = main;
-      document.querySelector("#conditionsCurrentDescription").textContent = description;
-      document.querySelector(
-        "#iconCurrent"
-      ).src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
-      document.querySelector("#degreeCurrent").textContent = temp.toFixed() + "°C";
+const getWeather = async (latitude, longitude) => {
+  const API_SRC_WEATHER = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
 
-      console.log("getWeather in fetch", name);
+  try {
+    const response = await fetch(API_SRC_WEATHER);
+    const responseJSON = await response.json();
 
-      setCurrentLocation(name);
-      setTheme(main);
-    });
+    updateUI(responseJSON);
+  } catch (error) {
+    console.error("Error fetching weather data:", error);
+  }
+};
+
+const updateUI = (data) => {
+  const {
+    name,
+    weather: [{ main, description, icon }],
+    main: { temp },
+  } = data;
+
+  document.querySelector("#conditionsCurrent").textContent = main;
+  document.querySelector("#conditionsCurrentDescription").textContent = description;
+  document.querySelector("#iconCurrent").src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+  document.querySelector("#degreeCurrent").textContent = temp.toFixed() + "°C";
+
+  setCurrentLocation(name);
+  setTheme(main);
 };
 /**
  * @function setTheme()
