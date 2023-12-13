@@ -26,7 +26,7 @@ inputSearch.addEventListener("input", (e) => handleSearch(e.target.value));
  * will call @function handleJSONResponse()
  */
 const fetchData = (city) => {
-  const API_SRC = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`;
+  const API_SRC = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`;
 
   fetch(API_SRC)
     .then((response) => response.json())
